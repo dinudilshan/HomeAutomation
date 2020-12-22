@@ -1,2 +1,2 @@
 # HomeAutomation
-HomeAutomation
+Sliit Home Automation
