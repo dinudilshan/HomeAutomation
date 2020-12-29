@@ -455,7 +455,7 @@ function updatePassword($username, $email, $dob, $newPassword, $passwordConfirm,
             $stmt->execute();
             $result = $stmt->fetchall();
         }catch(PDOException $exception){ 
-            logme($result['uid'],time(),"SELECT * FROM users WHERE UserID=:UserID","Error", $exception, "n/a");
+            logme($result['uid'],time(),"SELECT * FROM users WHERE UserID=:UserID AND status='1'" ,"Error", $exception, "n/a");
         }
         return $result;
     }
