@@ -450,7 +450,7 @@ function updatePassword($username, $email, $dob, $newPassword, $passwordConfirm,
 
     function getdevicesFromuid($UserID, $conn){
         try{
-            $stmt = $conn->prepare("SELECT * FROM devices WHERE UserID=:UserID");
+            $stmt = $conn->prepare("SELECT * FROM devices WHERE UserID=:UserID AND status='1'");
             $stmt->bindParam(':UserID', $UserID);
             $stmt->execute();
             $result = $stmt->fetchall();
