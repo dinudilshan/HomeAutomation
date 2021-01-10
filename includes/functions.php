@@ -462,7 +462,8 @@ function updatePassword($username, $email, $dob, $newPassword, $passwordConfirm,
 
     function ondevicesFromuIdAndDevId($UserID, $DeviceID, $conn){
         try{
-            $stmt = $conn->prepare("UPDATE devices SET status='1' WHERE UserID=:UserID AND DeviceID=:DeviceID");
+            $stmt = $conn->prepare("UPDATE devices SET status='1' time=:timee WHERE UserID=:UserID AND DeviceID=:DeviceID");
+            $stmt->bindParam(':timee', date("Y-m-d H:i:s"));
             $stmt->bindParam(':UserID', $UserID);
             $stmt->bindParam(':DeviceID', $DeviceID);
             $stmt->execute();
@@ -476,7 +477,8 @@ function updatePassword($username, $email, $dob, $newPassword, $passwordConfirm,
     
     function offdevicesFromuIdAndDevId($UserID, $DeviceID, $conn){
         try{
-            $stmt = $conn->prepare("UPDATE devices SET status='0' WHERE UserID=:UserID AND DeviceID=:DeviceID");
+            $stmt = $conn->prepare("UPDATE devices SET status='0' time=:timee WHERE UserID=:UserID AND DeviceID=:DeviceID");
+            $stmt->bindParam(':timee', date("Y-m-d H:i:s"));
             $stmt->bindParam(':UserID', $UserID);
             $stmt->bindParam(':DeviceID', $DeviceID);
             $stmt->execute();

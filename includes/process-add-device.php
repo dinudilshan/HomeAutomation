@@ -5,7 +5,7 @@ include_once 'functions.php';
  
 sec_session_start(); // Our custom secure way of starting a PHP session.
  
-if (isset($_POST['DeviceName'], $_POST['DeviceID'])) {
+if (isset($_POST['DeviceName'], $_POST['DeviceID'], $_SESSION['uid'])) {
     $DeviceName = $_POST['DeviceName'];
     $DeviceID = $_POST['DeviceID']; // The hashed password.
     $uid=$_SESSION['uid'];
