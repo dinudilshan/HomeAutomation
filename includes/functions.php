@@ -468,7 +468,7 @@ function updatePassword($username, $email, $dob, $newPassword, $passwordConfirm,
             $stmt->execute();
             return "0";
         }catch(PDOException $exception){ 
-            logme($result['uid'],time(),"UPDATE devices SET status='1' WHERE UserID=:UserID AND DeviceID=:DeviceID" ,"Error", $exception, "n/a");
+            logme($UserID,time(),"UPDATE devices SET status='1' WHERE UserID=:UserID AND DeviceID=:DeviceID" ,"Error", $exception, "n/a");
         return "1";
         }
         
@@ -480,11 +480,12 @@ function updatePassword($username, $email, $dob, $newPassword, $passwordConfirm,
             $stmt->bindParam(':UserID', $UserID);
             $stmt->bindParam(':DeviceID', $DeviceID);
             $stmt->execute();
-            $result = $stmt->fetchall();
+            return "0";
+            // $result = $stmt->fetchall();
         }catch(PDOException $exception){ 
-            logme($result['uid'],time(),"UPDATE devices SET status='0' WHERE UserID=:UserID AND DeviceID=:DeviceID" ,"Error", $exception, "n/a");
+            logme($UserID,time(),"UPDATE devices SET status='0' WHERE UserID=:UserID AND DeviceID=:DeviceID" ,"Error", $exception, "n/a");
+            return "1";
         }
-        return $result;
     }
 
 //Modified version of encryption and decryption using OpenSLL below
