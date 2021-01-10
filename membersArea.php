@@ -234,7 +234,10 @@ header('Location: ./index.php');
 														<td><?php echo($devices[$x]["DeviceName"]); ?></td>
 														<td><?php echo($devices[$x]["DeviceID"]);?></td>
 														<td class="actions">
-															<a href=""><i class="fa fa-bolt"> ON </i></a>
+														<form id="on-device-form" action="./includes/process-on-device.php" method="post" role="form">
+															<input type="hiddne" name="DeviceID" id="DeviceID" value="<?php echo($devices[$x]["DeviceID"]);?>">
+															<input type="submit"><i class="fa fa-bolt"> ON </i>
+														</form>
 														</td>
 													</tr>
 												<?php }?>

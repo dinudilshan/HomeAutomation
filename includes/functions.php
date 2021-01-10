@@ -460,6 +460,32 @@ function updatePassword($username, $email, $dob, $newPassword, $passwordConfirm,
         return $result;
     }
 
+    function ondevicesFromuIdAndDevId($UserID, $DeviceID, $conn){
+        try{
+            $stmt = $conn->prepare("UPDATE devices SET status='1' WHERE UserID=:UserID AND DeviceID=:DeviceID");
+            $stmt->bindParam(':UserID', $UserID);
+            $stmt->bindParam(':DeviceID', $DeviceID);
+            $stmt->execute();
+            $result = $stmt->fetchall();
+        }catch(PDOException $exception){ 
+            logme($result['uid'],time(),"UPDATE devices SET status='1' WHERE UserID=:UserID AND DeviceID=:DeviceID" ,"Error", $exception, "n/a");
+        }
+        return $result;
+    }
+    
+    function offdevicesFromuIdAndDevId($UserID, $DeviceID, $conn){
+        try{
+            $stmt = $conn->prepare("UPDATE devices SET status='0' WHERE UserID=:UserID AND DeviceID=:DeviceID");
+            $stmt->bindParam(':UserID', $UserID);
+            $stmt->bindParam(':DeviceID', $DeviceID);
+            $stmt->execute();
+            $result = $stmt->fetchall();
+        }catch(PDOException $exception){ 
+            logme($result['uid'],time(),"UPDATE devices SET status='0' WHERE UserID=:UserID AND DeviceID=:DeviceID" ,"Error", $exception, "n/a");
+        }
+        return $result;
+    }
+
 //Modified version of encryption and decryption using OpenSLL below
 //https://stackoverflow.com/questions/10916284/how-to-encrypt-decrypt-data-in-php
 
