@@ -466,11 +466,12 @@ function updatePassword($username, $email, $dob, $newPassword, $passwordConfirm,
             $stmt->bindParam(':UserID', $UserID);
             $stmt->bindParam(':DeviceID', $DeviceID);
             $stmt->execute();
-            $result = $stmt->fetchall();
+            return "0";
         }catch(PDOException $exception){ 
             logme($result['uid'],time(),"UPDATE devices SET status='1' WHERE UserID=:UserID AND DeviceID=:DeviceID" ,"Error", $exception, "n/a");
+        return "1";
         }
-        return $result;
+        
     }
     
     function offdevicesFromuIdAndDevId($UserID, $DeviceID, $conn){
