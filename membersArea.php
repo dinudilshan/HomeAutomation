@@ -236,7 +236,7 @@ header('Location: ./index.php');
 														<td class="actions">
 														<form id="on-device-form" action="./includes/process-on-device.php" method="post" role="form">
 															<input type="hidden" name="DeviceID" id="DeviceID" value="<?php echo($devices[$x]["DeviceID"]);?>">
-															<input type="submit"><i class="fa fa-bolt"> ON </i>
+															<button type="submit" value="ON"><i class="fa fa-bolt">ON</i></button>
 														</form>
 														</td>
 													</tr>
