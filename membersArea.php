@@ -189,7 +189,7 @@ header('Location: ./index.php');
 								</header>
 								<div class="panel-body">
 										<div class="table-responsive">
-											<?php if(count($inactdevices)<=0){?>
+											<?php if(count($inactdevices)<=0 && count($devices)<=0){?>
 												<div class="col-md-12">
 													<section class="panel panel-danger">
 														<header class="panel-heading">
@@ -243,7 +243,7 @@ header('Location: ./index.php');
 								</header>
 								<div class="panel-body">
 										<div class="table-responsive">
-											<?php if(count($devices)<=0){?>
+											<?php if(count($devices)<=0 && count($inactdevices)<=0){?>
 												<div class="col-md-12">
 													<section class="panel panel-danger">
 														<header class="panel-heading">
