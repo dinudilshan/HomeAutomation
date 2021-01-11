@@ -291,7 +291,6 @@ header('Location: ./index.php');
 						</div>
 					</div>
 				</section>
-			</div>
 
 			<aside id="sidebar-right" class="sidebar-right">
 				<div class="nano">
