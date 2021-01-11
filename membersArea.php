@@ -235,6 +235,7 @@ header('Location: ./index.php');
 								</div>
 							</section>
 						</div>
+						</div>
 
 						<div class="col-md-6">
 							<section class="panel">
