@@ -9,14 +9,14 @@ if (isset($_SESSION['uid'], $_POST['DeviceID'])) {
     // $DeviceName = $_POST['DeviceName'];
     $DeviceID = $_POST['DeviceID'];
     $UserID=$_SESSION['uid'];
-    $onDevice=ondevicesFromuIdAndDevId($UserID, $DeviceID, $conn);
-    // $offDevice=offdevicesFromuIdAndDevId($UserID, $DeviceID, $conn);
+    // $onDevice=ondevicesFromuIdAndDevId($UserID, $DeviceID, $conn);
+    $offDevice=offdevicesFromuIdAndDevId($UserID, $DeviceID, $conn);
 
-    if ($onDevice == "0" ) {
+    if ($offDevice == "0" ) {
         // addDevice success 
         header('Location: ../membersArea.php');
     }
-    else  if ($onDevice == "1") {
+    else  if ($offDevice == "1") {
         // addDevice failed 
         header('Location: ../membersArea.php?error=1&DeviceID='.$DeviceID);
     }

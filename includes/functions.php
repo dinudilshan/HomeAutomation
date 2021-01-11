@@ -448,7 +448,7 @@ function updatePassword($username, $email, $dob, $newPassword, $passwordConfirm,
         return $result;
     }
 
-    function getdevicesFromuid($UserID, $conn){
+    function getActdevicesFromuid($UserID, $conn){
         try{
             $stmt = $conn->prepare("SELECT * FROM devices WHERE UserID=:UserID AND status='1'");
             $stmt->bindParam(':UserID', $UserID);
@@ -460,9 +460,21 @@ function updatePassword($username, $email, $dob, $newPassword, $passwordConfirm,
         return $result;
     }
 
+    function getInactdevicesFromuid($UserID, $conn){
+        try{
+            $stmt = $conn->prepare("SELECT * FROM devices WHERE UserID=:UserID AND status='0'");
+            $stmt->bindParam(':UserID', $UserID);
+            $stmt->execute();
+            $result = $stmt->fetchall();
+        }catch(PDOException $exception){ 
+            logme($result['uid'],time(),"SELECT * FROM users WHERE UserID=:UserID AND status='0'" ,"Error", $exception, "n/a");
+        }
+        return $result;
+    }
+
     function ondevicesFromuIdAndDevId($UserID, $DeviceID, $conn){
         try{
-            $stmt = $conn->prepare("UPDATE devices SET status='1' time=:timee WHERE UserID=:UserID AND DeviceID=:DeviceID");
+            $stmt = $conn->prepare("UPDATE devices SET status='1',time=:timee WHERE UserID=:UserID AND DeviceID=:DeviceID");
             $stmt->bindParam(':timee', date("Y-m-d H:i:s"));
             $stmt->bindParam(':UserID', $UserID);
             $stmt->bindParam(':DeviceID', $DeviceID);
@@ -477,7 +489,7 @@ function updatePassword($username, $email, $dob, $newPassword, $passwordConfirm,
     
     function offdevicesFromuIdAndDevId($UserID, $DeviceID, $conn){
         try{
-            $stmt = $conn->prepare("UPDATE devices SET status='0' time=:timee WHERE UserID=:UserID AND DeviceID=:DeviceID");
+            $stmt = $conn->prepare("UPDATE devices SET status='0', time=:timee WHERE UserID=:UserID AND DeviceID=:DeviceID");
             $stmt->bindParam(':timee', date("Y-m-d H:i:s"));
             $stmt->bindParam(':UserID', $UserID);
             $stmt->bindParam(':DeviceID', $DeviceID);

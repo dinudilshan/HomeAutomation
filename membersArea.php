@@ -7,7 +7,8 @@ sec_session_start();
 if(isset($_SESSION['uid'])){
 $uid = preg_replace("/[^0-9]/", "", $_SESSION['uid']); //XSS Security
 $user=getUser($uid, $conn);
-$devices=getdevicesFromuid($uid, $conn);
+$devices=getActdevicesFromuid($uid, $conn);
+$inactdevices=getInactdevicesFromuid($uid, $conn);
 
 }
 
@@ -181,15 +182,54 @@ header('Location: ./index.php');
 
 					<div class="row">
 
-						<div class="col-md-6 ">
+					<div class="col-md-6">
 							<section class="panel">
 								<header class="panel-heading">
-									<h2 class="panel-title">Power Usage</h2>
+									<h2 class="panel-title">Inactive Devices</h2>
 								</header>
 								<div class="panel-body">
-									<div class="ro">
-										<div class="col-md-6">
-										<code>Comming soon..</code>
+										<div class="table-responsive">
+											<?php if(count(inactdevices)<=0){?>
+												<div class="col-md-12">
+													<section class="panel panel-danger">
+														<header class="panel-heading">
+															<h2 class="panel-title">No Devices</h2>
+														</header>
+														<div class="panel-body">
+															<code>Currently No devices added.</code>
+															<code>Please add your device..</code>
+															<h4><a href="add-device.php"><i class="fa fa-plus"> ADD </i></a></h4>
+														</div>
+													</section>
+												</div>
+<!-- 
+												<h2>Currently No devices added.</h2>
+												<h3>Please add your device.</h3>
+												<h4><a href="add-device.php"><i class="fa fa-plus"> ADD </i></a></h4> -->
+											<?php } else{?>
+											<table class="table mb-none">
+												<thead>
+													<tr>
+														<th>Device Name</th>
+														<th>Device Number</th>
+													</tr>
+												</thead>
+												<tbody>
+												<?php for ($x = 0; $x < count($inactdevices); $x++) {?>
+													<tr>
+														<td><?php echo($inactdevices[$x]["DeviceName"]); ?></td>
+														<td><?php echo($inactdevices[$x]["DeviceID"]);?></td>
+														<td class="actions">
+														<form id="on-device-form" action="./includes/process-on-device.php" method="post" role="form">
+															<input type="hidden" name="DeviceID" id="DeviceID" value="<?php echo($inactdevices[$x]["DeviceID"]);?>">
+															<button type="submit" value="ON"><i class="fa fa-bolt">ON</i></button>
+														</form>
+														</td>
+													</tr>
+												<?php }?>
+												</tbody>
+											</table>
+											<?php }?>
 										</div>
 									</div>
 								</div>
@@ -234,9 +274,9 @@ header('Location: ./index.php');
 														<td><?php echo($devices[$x]["DeviceName"]); ?></td>
 														<td><?php echo($devices[$x]["DeviceID"]);?></td>
 														<td class="actions">
-														<form id="on-device-form" action="./includes/process-on-device.php" method="post" role="form">
+														<form id="on-device-form" action="./includes/process-off-device.php" method="post" role="form">
 															<input type="hidden" name="DeviceID" id="DeviceID" value="<?php echo($devices[$x]["DeviceID"]);?>">
-															<button type="submit" value="ON"><i class="fa fa-bolt">ON</i></button>
+															<button type="submit" value="OFF"><i class="fa fa-bolt">OFF</i></button>
 														</form>
 														</td>
 													</tr>
