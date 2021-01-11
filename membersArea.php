@@ -215,13 +215,13 @@ header('Location: ./index.php');
 													</tr>
 												</thead>
 												<tbody>
-												<?php for ($x = 0; $x < count($inactdevices); $x++) {?>
+												<?php for ($Y = 0; $Y < count($inactdevices); $Y++) {?>
 													<tr>
-														<td><?php echo($inactdevices[$x]["DeviceName"]); ?></td>
-														<td><?php echo($inactdevices[$x]["DeviceID"]);?></td>
+														<td><?php echo($inactdevices[$Y]["DeviceName"]); ?></td>
+														<td><?php echo($inactdevices[$Y]["DeviceID"]);?></td>
 														<td class="actions">
 														<form id="on-device-form" action="./includes/process-on-device.php" method="post" role="form">
-															<input type="hidden" name="DeviceID" id="DeviceID" value="<?php echo($inactdevices[$x]["DeviceID"]);?>">
+															<input type="hidden" name="DeviceID" id="DeviceID" value="<?php echo($inactdevices[$Y]["DeviceID"]);?>">
 															<button type="submit" value="ON"><i class="fa fa-bolt">ON</i></button>
 														</form>
 														</td>
