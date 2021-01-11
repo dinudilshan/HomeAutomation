@@ -182,7 +182,7 @@ header('Location: ./index.php');
 
 					<div class="row">
 
-					<div class="col-md-6">
+						<div class="col-md-6">
 							<section class="panel">
 								<header class="panel-heading">
 									<h2 class="panel-title">Inactive Devices</h2>
@@ -202,7 +202,7 @@ header('Location: ./index.php');
 														</div>
 													</section>
 												</div>
-<!-- 
+												<!-- 
 												<h2>Currently No devices added.</h2>
 												<h3>Please add your device.</h3>
 												<h4><a href="add-device.php"><i class="fa fa-plus"> ADD </i></a></h4> -->
@@ -235,7 +235,6 @@ header('Location: ./index.php');
 								</div>
 							</section>
 						</div>
-						</div>
 
 						<div class="col-md-6">
 							<section class="panel">
@@ -257,7 +256,7 @@ header('Location: ./index.php');
 														</div>
 													</section>
 												</div>
-<!-- 
+												<!-- 
 												<h2>Currently No devices added.</h2>
 												<h3>Please add your device.</h3>
 												<h4><a href="add-device.php"><i class="fa fa-plus"> ADD </i></a></h4> -->
@@ -291,11 +290,6 @@ header('Location: ./index.php');
 							</section>
 						</div>
 					</div>
-
-					<!-- start: page -->
-					
-					
-					<!-- end: page -->
 				</section>
 			</div>
 
